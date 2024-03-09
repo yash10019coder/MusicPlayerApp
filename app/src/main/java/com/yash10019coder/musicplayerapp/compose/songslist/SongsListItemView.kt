@@ -24,7 +24,9 @@ import com.yash10019coder.musicplayerapp.R
 fun SongCard(image: Painter, songName: String, artistName: String, onSongClick: () -> Unit) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.clickable(onClick = onSongClick)
+        modifier = Modifier
+            .padding(20.dp, 12.dp)
+            .clickable(onClick = onSongClick)
     ) {
         Image(
             painter = image,
