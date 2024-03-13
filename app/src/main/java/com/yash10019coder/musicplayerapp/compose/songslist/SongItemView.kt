@@ -1,8 +1,10 @@
 package com.yash10019coder.musicplayerapp.compose.songslist
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -30,7 +32,9 @@ fun SongItemView(imageUrl: String, songName: String, artistName: String, onSongC
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .padding(20.dp, 12.dp)
+            .fillMaxWidth(1.0f)
             .clickable(onClick = onSongClick)
+            .background(color = MaterialTheme.colorScheme.surface)
     ) {
         AsyncImage(
             model = imageUrl,

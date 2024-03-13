@@ -62,7 +62,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
 
-    implementation(project(":data"))
+//    implementation(project(":data"))
     implementation("io.coil-kt:coil-compose:$coilVersion") //coil for image loading
 
     testImplementation("junit:junit:4.13.2")
