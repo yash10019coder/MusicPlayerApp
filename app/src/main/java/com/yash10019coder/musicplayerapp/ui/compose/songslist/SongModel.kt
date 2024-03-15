@@ -6,5 +6,7 @@ data class SongModel(
     val id: Int,
     val imageUrl: String,
     val name: String,
-    val artist: String
+    val artist: String,
+    val songUrl: String,
+    val isTopTrack: Boolean
 )

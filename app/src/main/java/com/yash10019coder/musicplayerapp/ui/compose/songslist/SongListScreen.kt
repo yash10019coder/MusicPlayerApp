@@ -57,67 +57,6 @@ fun SongList(songs: List<SongModel>, onSongClickListener: (id: Int) -> Unit) {
 @Preview
 @Composable
 fun PreviewSongList() {
-    val songs = listOf(
-        SongModel(
-            id = 1,
-            imageUrl = "https://picsum.photos/200/300",
-            name = "Song Name",
-            artist = "Artist Name"
-        ),
-        SongModel(
-            id = 2,
-            imageUrl = "https://picsum.photos/200/300",
-            name = "Song Name",
-            artist = "Artist Name"
-        ),
-        SongModel(
-            id = 3,
-            imageUrl = "https://picsum.photos/200/300",
-            name = "Song Name",
-            artist = "Artist Name"
-        ),
-        SongModel(
-            id = 4,
-            imageUrl = "https://picsum.photos/200/300",
-            name = "Song Name",
-            artist = "Artist Name"
-        ),
-        SongModel(
-            id = 5,
-            imageUrl = "https://picsum.photos/200/300",
-            name = "Song Name",
-            artist = "Artist Name"
-        ),
-        SongModel(
-            id = 6,
-            imageUrl = "https://picsum.photos/200/300",
-            name = "Song Name",
-            artist = "Artist Name"
-        ),
-        SongModel(
-            id = 7,
-            imageUrl = "https://picsum.photos/200/300",
-            name = "Song Name",
-            artist = "Artist Name"
-        ),
-        SongModel(
-            id = 8,
-            imageUrl = "https://picsum.photos/200/300",
-            name = "Song Name",
-            artist = "Artist Name"
-        ),
-        SongModel(
-            id = 9,
-            imageUrl = "https://picsum.photos/200/300",
-            name = "Song Name",
-            artist = "Artist Name"
-        ),
-        SongModel(
-            id = 10,
-            imageUrl = "https://picsum.photos/200/300",
-            name = "Song Name",
-            artist = "Artist Name"
-        )
-    )
+    val songs = listOf<SongModel>()
     SongList(songs = songs, onSongClickListener = {})
 }

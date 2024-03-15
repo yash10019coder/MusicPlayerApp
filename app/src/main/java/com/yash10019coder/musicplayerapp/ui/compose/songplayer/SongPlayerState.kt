@@ -14,7 +14,7 @@ import com.yash10019coder.musicplayerapp.ui.compose.songslist.SongModel
  * @param error An optional error message if something goes wrong (e.g., song fails to load).
  */
 data class SongPlayerState(
-    val selectedSong: SongModel,
+    val selectedSong: SongModel?,
     val isPlaying: Boolean = false,
     val isLoading: Boolean = true,
     val progress: Float = 0f,
