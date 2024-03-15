@@ -68,7 +68,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
 
-//    implementation(project(":data"))
+    implementation(project(":domain"))
     implementation("io.coil-kt:coil-compose:$coilVersion") //coil for image loading
 
     implementation("com.google.dagger:hilt-android:2.44")

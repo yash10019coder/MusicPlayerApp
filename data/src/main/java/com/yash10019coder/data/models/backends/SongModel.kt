@@ -1,4 +1,4 @@
-package com.yash10019coder.data.models
+package com.yash10019coder.data.models.backends
 
 
 import com.google.gson.annotations.SerializedName

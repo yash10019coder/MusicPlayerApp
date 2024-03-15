@@ -40,6 +40,8 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
 
+    implementation(project(":data"))
+
     //Hilt
     val hiltVersion=rootProject.ext["hiltVersion"]
     implementation("com.google.dagger:hilt-android:$hiltVersion")
