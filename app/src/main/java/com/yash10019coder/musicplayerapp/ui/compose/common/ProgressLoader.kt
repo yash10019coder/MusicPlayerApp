@@ -1,4 +1,4 @@
-package com.yash10019coder.musicplayerapp.compose.common
+package com.yash10019coder.musicplayerapp.ui.compose.common
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size

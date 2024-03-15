@@ -1,4 +1,4 @@
-package com.yash10019coder.musicplayerapp.compose.songslist
+package com.yash10019coder.musicplayerapp.ui.compose.songslist
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -17,13 +17,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.BrushPainter
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
-import com.yash10019coder.musicplayerapp.R
-import com.yash10019coder.musicplayerapp.compose.common.ProgressBar
-import com.yash10019coder.musicplayerapp.compose.common.ProgressLoader
 
 
 @Composable

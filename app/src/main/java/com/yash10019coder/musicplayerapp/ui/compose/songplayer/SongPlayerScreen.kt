@@ -1,4 +1,4 @@
-package com.yash10019coder.musicplayerapp.compose.songplayer
+package com.yash10019coder.musicplayerapp.ui.compose.songplayer
 
 import android.content.res.Configuration
 import androidx.compose.foundation.Image
@@ -6,7 +6,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -21,17 +20,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.AsyncImage
 import com.yash10019coder.musicplayerapp.R
-import com.yash10019coder.musicplayerapp.compose.songslist.SongModel
+import com.yash10019coder.musicplayerapp.ui.compose.songslist.SongModel
 
 //TODO: issue #11
+
+
 @Composable
 fun SongPlayerScreen(
-    song: SongModel,
+    viewModel: SongPlayerViewModel = viewModel(),
+    song: SongModel = viewModel.state.value.selectedSong,
     onSongPlayerState: (SongPlayerState) -> Unit,
 ) {
     Surface(
@@ -44,13 +47,13 @@ fun SongPlayerScreen(
             modifier = Modifier,
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
-            Image(
-                painter = painterResource(id = R.drawable.test_song_cover_image),
+            AsyncImage(
+                model = song.imageUrl,
                 contentDescription = "Song Image",
                 modifier = Modifier
                     .aspectRatio(1.0f)
                     .padding(0.dp, 50.dp, 0.dp, 0.dp)
-                    .clip(shape = RoundedCornerShape(10.dp))
+                    .clip(shape = RoundedCornerShape(10.dp)),
             )
 
 
@@ -65,7 +68,7 @@ fun SongPlayerScreen(
             SliderSeekBar(
                 songUIState = SongPlayerState(
                     selectedSong = song,
-                    isSongPlaying = false,
+                    isPlaying = false,
                     isLoading = false,
                     progress = 0.5f
                 ),
@@ -201,7 +204,7 @@ fun PreviewSliderSeekBar() {
                 name = "Song Name",
                 artist = "Artist Name"
             ),
-            isSongPlaying = false,
+            isPlaying = false,
             isLoading = false,
             progress = 0.5f
         ),

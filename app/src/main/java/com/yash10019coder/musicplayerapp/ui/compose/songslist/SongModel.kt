@@ -1,4 +1,4 @@
-package com.yash10019coder.musicplayerapp.compose.songslist
+package com.yash10019coder.musicplayerapp.ui.compose.songslist
 
 import androidx.compose.ui.graphics.painter.Painter
 

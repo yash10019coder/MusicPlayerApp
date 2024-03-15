@@ -1,4 +1,4 @@
-package com.yash10019coder.musicplayerapp.compose.songslist
+package com.yash10019coder.musicplayerapp.ui.compose.songslist
 
 data class SongsListState(
     val songs: List<SongModel>,
