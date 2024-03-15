@@ -1,0 +1,18 @@
+@startuml
+
+package "App Module" {
+    [app]
+}
+
+package "Domain Module" {
+    [domain]
+}
+
+package "Data Module" {
+    [data]
+}
+
+[app] ..> [domain] : uses
+[domain] ..> [data] : uses
+
+@enduml
