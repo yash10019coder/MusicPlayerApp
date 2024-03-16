@@ -34,7 +34,7 @@ import com.yash10019coder.musicplayerapp.ui.compose.songslist.SongModel
 @Composable
 fun SongPlayerScreen(
     viewModel: SongPlayerViewModel = viewModel(),
-    song: SongModel = viewModel.state.value.selectedSong,
+    song: SongModel = viewModel.state.value.selectedSong!!,
     onSongPlayerState: (SongPlayerState) -> Unit,
 ) {
     Surface(
@@ -202,7 +202,9 @@ fun PreviewSliderSeekBar() {
                 id = 1,
                 imageUrl = "https://picsum.photos/200/300",
                 name = "Song Name",
-                artist = "Artist Name"
+                artist = "Artist Name",
+                isTopTrack = false,
+                songUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
             ),
             isPlaying = false,
             isLoading = false,
@@ -234,7 +236,9 @@ fun PreviewSongPlayerScreen() {
             id = 1,
             imageUrl = "https://picsum.photos/200/300",
             name = "Song Name",
-            artist = "Artist Name"
+            artist = "Artist Name",
+            isTopTrack = false,
+            songUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
         ),
         onSongPlayerState = {},
     )

@@ -52,7 +52,7 @@ android {
 }
 
 kapt {
-
+    correctErrorTypes = true
 }
 
 val coilVersion = "2.6.0"
