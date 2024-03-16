@@ -68,9 +68,3 @@ This project is licensed under the MIT License - see the `LICENSE` file for deta
   project.
 - Thanks to [Android Developers](https://developer.android.com/) for comprehensive documentation on
   Jetpack Compose and Android app development.
-
----
-
-This README template provides a starting point. You can customize and expand it to better fit your
-project's specificities, especially in sections like "Contributing" or "Acknowledgments," where more
-personalized details can be beneficial.
