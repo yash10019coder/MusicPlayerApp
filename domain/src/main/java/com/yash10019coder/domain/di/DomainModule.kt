@@ -1,5 +1,6 @@
 package com.yash10019coder.domain.di
 
+import android.media.MediaPlayer
 import com.yash10019coder.data.models.backends.SongsService
 import com.yash10019coder.domain.repository.SongsRepo
 import com.yash10019coder.domain.repository.SongsRepoImpl
@@ -15,5 +16,10 @@ class DomainModule {
     @Provides
     fun provideSongsRepo(songsService: SongsService): SongsRepo {
         return SongsRepoImpl(songsService, Dispatchers.IO)
+    }
+
+    @Provides
+    fun provideMediaPlayer(): MediaPlayer {
+        return MediaPlayer()
     }
 }

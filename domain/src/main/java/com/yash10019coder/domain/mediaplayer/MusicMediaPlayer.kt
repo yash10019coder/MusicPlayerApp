@@ -9,7 +9,7 @@ class MyMediaPlayer @Inject constructor(
     private var mediaPlayer: MediaPlayer?
 ){
     fun initMediaPlayer(url: String) {
-        mediaPlayer = MediaPlayer().apply {
+        mediaPlayer?.apply {
             setAudioAttributes(
                 AudioAttributes.Builder()
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
@@ -18,6 +18,7 @@ class MyMediaPlayer @Inject constructor(
 
             setDataSource(url)
             prepareAsync()
+
         }
     }
 
