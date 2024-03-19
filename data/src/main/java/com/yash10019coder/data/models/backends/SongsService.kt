@@ -4,5 +4,5 @@ import retrofit2.http.GET
 
 interface SongsService {
     @GET("/items/songs")
-    suspend fun getSongs(): List<SongModel>
+    suspend fun getSongs(): SongsResponse
 }

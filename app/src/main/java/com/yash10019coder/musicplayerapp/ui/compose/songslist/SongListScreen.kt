@@ -11,21 +11,27 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
+import com.yash10019coder.musicplayerapp.ui.compose.common.ProgressBar
 import com.yash10019coder.musicplayerapp.ui.compose.common.ProgressLoader
+import timber.log.Timber
 
 @Composable
 fun SongList(
-    viewModel: SongsListViewModel = viewModel()
+    navController: NavController,
+    viewModel: SongsListViewModel
 ) {
     val state by viewModel.state.collectAsState()
 
     if (state.isLoading) {
-        ProgressLoader(isLoading = state.isLoading)
+        ProgressBar()
     } else {
         SongList(songs = state.songs, onSongClickListener = { songId ->
             viewModel.selectSong(songId)
-            // Additional actions when a song is clicked, e.g., navigate to player screen
+            navController.navigate("songPlayer/$songId")
+            Timber.i("Song selected: $songId")
         })
     }
 }
@@ -39,11 +45,11 @@ fun SongList(songs: List<SongModel>, onSongClickListener: (id: Int) -> Unit) {
     ) {
         LazyColumn(
             modifier = Modifier
-                .fillMaxWidth(1.0f)
+                .fillMaxWidth(1.0f),
         ) {
             items(songs) { song ->
                 SongItemView(
-                    imageUrl = song.imageUrl,
+                    imageUrl = "https://cms.samespace.com/assets/${song.imageUrl}",
                     songName = song.name,
                     artistName = song.artist,
                     onSongClick = { onSongClickListener(song.id) }
@@ -57,6 +63,18 @@ fun SongList(songs: List<SongModel>, onSongClickListener: (id: Int) -> Unit) {
 @Preview
 @Composable
 fun PreviewSongList() {
-    val songs = listOf<SongModel>()
+    val songs = mutableListOf<SongModel>()
+    for (i in 1..30) {
+        songs.add(
+            SongModel(
+                id = i,
+                name = "Song $i",
+                artist = "Artist $i",
+                imageUrl = "https://cms.samespace.com/assets/artist$i.jpg",
+                songUrl = "https://cms.samespace.com/assets/song$i.mp3",
+                isTopTrack = false
+            )
+        )
+    }
     SongList(songs = songs, onSongClickListener = {})
 }

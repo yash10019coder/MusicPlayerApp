@@ -30,7 +30,6 @@ fun SongItemView(imageUrl: String, songName: String, artistName: String, onSongC
             .padding(20.dp, 12.dp)
             .fillMaxWidth(1.0f)
             .clickable(onClick = onSongClick)
-            .background(color = MaterialTheme.colorScheme.surface)
     ) {
         AsyncImage(
             model = imageUrl,

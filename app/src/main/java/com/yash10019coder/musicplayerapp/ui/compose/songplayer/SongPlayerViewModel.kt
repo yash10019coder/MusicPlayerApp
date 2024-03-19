@@ -13,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class SongPlayerViewModel @Inject constructor(
 
-): ViewModel() {
+) : ViewModel() {
     private val _state = MutableStateFlow(
         SongPlayerState(
             selectedSong = null,
@@ -60,6 +60,10 @@ class SongPlayerViewModel @Inject constructor(
     }
 
     fun playPreviousSong() {
+
+    }
+
+    fun selectSong(songModel: SongModel) {
 
     }
 }

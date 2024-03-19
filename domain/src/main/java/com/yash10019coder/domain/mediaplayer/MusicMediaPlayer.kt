@@ -5,20 +5,19 @@ import android.media.MediaPlayer
 import java.io.IOException
 import javax.inject.Inject
 
-class MyMediaPlayer @Inject constructor(
-    private var mediaPlayer: MediaPlayer?
-){
+class MyMediaPlayer @Inject constructor() {
+    private var mediaPlayer: MediaPlayer? = null
     fun initMediaPlayer(url: String) {
-        mediaPlayer?.apply {
+        mediaPlayer = MediaPlayer().apply {
             setAudioAttributes(
                 AudioAttributes.Builder()
                     .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
                     .build()
             )
-
             setDataSource(url)
-            prepareAsync()
-
+            prepare()
+            start()
         }
     }
 
@@ -58,5 +57,13 @@ class MyMediaPlayer @Inject constructor(
 
     fun setOnErrorListener(listener: MediaPlayer.OnErrorListener) {
         mediaPlayer?.setOnErrorListener(listener)
+    }
+
+    fun setProgressListener(listener: MediaPlayer.OnBufferingUpdateListener) {
+        mediaPlayer?.setOnBufferingUpdateListener(listener)
+    }
+
+    fun release() {
+        mediaPlayer?.release()
     }
 }

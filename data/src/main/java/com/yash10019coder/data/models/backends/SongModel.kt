@@ -3,6 +3,10 @@ package com.yash10019coder.data.models.backends
 
 import com.google.gson.annotations.SerializedName
 
+data class SongsResponse(
+    var data: List<SongModel>,
+)
+
 data class SongModel(
     @SerializedName("accent")
     var accent: String,
