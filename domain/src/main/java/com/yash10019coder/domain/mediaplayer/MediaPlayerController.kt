@@ -35,6 +35,12 @@ class MediaPlayerController @Inject constructor(
         }
     }
 
+    suspend fun release(){
+        withContext(coroutineDispatcher) {
+            mediaPlayer.release()
+        }
+    }
+
     suspend fun isPlaying(): Boolean {
         return withContext(coroutineDispatcher) {
             mediaPlayer.isPlaying()
@@ -70,5 +76,9 @@ class MediaPlayerController @Inject constructor(
     suspend fun playNewSong(url: String) {
         stopPlayback()
         initMediaPlayer(url)
+    }
+
+    fun setOnBufferingUpdateListener(listener: MediaPlayer.OnBufferingUpdateListener) {
+        mediaPlayer.setProgressListener(listener)
     }
 }

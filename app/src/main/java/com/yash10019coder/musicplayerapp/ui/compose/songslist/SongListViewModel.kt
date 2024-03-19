@@ -89,7 +89,7 @@ class SongsListViewModel @Inject constructor(
         val currentSongId = _state.value.selectedSongID ?: 0
         val nextSongId = (currentSongId + 1) % _state.value.songs.size
         viewModelScope.launch {
-            mediaPlayerController.stopPlayback()
+            mediaPlayerController.release()
             selectSong(nextSongId)
         }
     }
@@ -98,7 +98,7 @@ class SongsListViewModel @Inject constructor(
         val currentSongId = _state.value.selectedSongID ?: 0
         val prevSongId = (currentSongId - 1) % _state.value.songs.size
         viewModelScope.launch {
-            mediaPlayerController.stopPlayback()
+            mediaPlayerController.release()
             selectSong(prevSongId)
         }
     }
@@ -121,6 +121,7 @@ class SongsListViewModel @Inject constructor(
             val currentState = _statePlayer.value
             _statePlayer.value = currentState.copy(isPlaying = !currentState.isPlaying)
             // Here, integrate with your actual playback logic to play or pause the song
+            playPauseSong()
         }
     }
 
@@ -135,15 +136,17 @@ class SongsListViewModel @Inject constructor(
 
 
     fun playPreviousSongPlayer() {
-
+        playNextSong()
     }
 
-    fun selectSongPlayer(songModel: SongModel) {
-
+    fun playNextSongPlayer() {
+        playPrevSong()
     }
 
     fun updateSongPlayerState(songPlayerState: SongPlayerState) {
-        _statePlayer.value = songPlayerState
+        mediaPlayerController.setOnBufferingUpdateListener { mp, percent ->
+            _statePlayer.value = _statePlayer.value.copy(progress = percent.toFloat())
+        }
     }
 }
 

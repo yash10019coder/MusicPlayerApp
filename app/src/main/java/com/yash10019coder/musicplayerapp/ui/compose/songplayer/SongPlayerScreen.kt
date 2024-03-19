@@ -52,12 +52,12 @@ fun SongPlayerScreen(
             verticalArrangement = Arrangement.SpaceEvenly
         ) {
             AsyncImage(
-                model = song.imageUrl,
+                model = "https://cms.samespace.com/assets/${song.imageUrl}",
                 contentDescription = "Song Image",
                 modifier = Modifier
                     .aspectRatio(1.0f)
                     .padding(0.dp, 50.dp, 0.dp, 0.dp)
-                    .clip(shape = RoundedCornerShape(10.dp)),
+                    .clip(shape = RoundedCornerShape(3.dp)),
             )
 
 
@@ -76,7 +76,7 @@ fun SongPlayerScreen(
                     isLoading = false,
                     progress = 0.5f
                 ),
-                onSongPlayerState = {songPlayerState->
+                onSongPlayerState = { songPlayerState ->
                     viewModel.updateSongPlayerState(songPlayerState)
                 },
                 modifier = Modifier
@@ -84,9 +84,9 @@ fun SongPlayerScreen(
 
 
             SongControls(
-                onPreviousSongClick = {},
-                onPlayPauseClick = {},
-                onNextSongClick = {},
+                onPreviousSongClick = { viewModel.playPreviousSongPlayer() },
+                onPlayPauseClick = { viewModel.togglePlayPausePlayer() },
+                onNextSongClick = { viewModel.playNextSongPlayer() },
                 modifier = Modifier
                     .fillMaxWidth(1.0f)
                     .padding(16.dp, 0.dp, 16.dp, 100.dp)

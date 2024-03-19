@@ -58,4 +58,12 @@ class MyMediaPlayer @Inject constructor() {
     fun setOnErrorListener(listener: MediaPlayer.OnErrorListener) {
         mediaPlayer?.setOnErrorListener(listener)
     }
+
+    fun setProgressListener(listener: MediaPlayer.OnBufferingUpdateListener) {
+        mediaPlayer?.setOnBufferingUpdateListener(listener)
+    }
+
+    fun release() {
+        mediaPlayer?.release()
+    }
 }
