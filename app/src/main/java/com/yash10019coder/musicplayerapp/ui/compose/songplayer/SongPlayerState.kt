@@ -17,8 +17,8 @@ data class SongPlayerState(
     val selectedSong: SongModel?,
     val isPlaying: Boolean = false,
     val isLoading: Boolean = true,
-    val progress: Float = 0f,
-    val currentPosition: Long = 0L,
-    val duration: Long = 0L,
+    var progress: Float = 0f,
+    var currentPosition: Long = 0L,
+    var duration: Long = 0L,
     val error: String? = null
 )

@@ -7,3 +7,4 @@ plugins {
 }
 
 ext["hiltVersion"] = "2.51"
+ext["hiltCompilerVersion"] = "1.2.0"

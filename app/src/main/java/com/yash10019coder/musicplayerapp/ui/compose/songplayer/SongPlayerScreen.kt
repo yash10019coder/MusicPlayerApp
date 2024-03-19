@@ -17,30 +17,34 @@ import androidx.compose.material3.SliderDefaults
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.yash10019coder.musicplayerapp.R
 import com.yash10019coder.musicplayerapp.ui.compose.songslist.SongModel
+import com.yash10019coder.musicplayerapp.ui.compose.songslist.SongsListViewModel
 
 //TODO: issue #11
 
 
 @Composable
 fun SongPlayerScreen(
-    viewModel: SongPlayerViewModel = viewModel(),
-    song: SongModel = viewModel.state.value.selectedSong!!,
-    onSongPlayerState: (SongPlayerState) -> Unit,
+    viewModel: SongsListViewModel,
 ) {
+    val state by viewModel.statePlayer.collectAsState()
+    val song = state.selectedSong!!
     Surface(
         modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
+            .fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
         Column(
@@ -72,7 +76,9 @@ fun SongPlayerScreen(
                     isLoading = false,
                     progress = 0.5f
                 ),
-                onSongPlayerState = onSongPlayerState,
+                onSongPlayerState = {songPlayerState->
+                    viewModel.updateSongPlayerState(songPlayerState)
+                },
                 modifier = Modifier
             )
 
@@ -228,18 +234,12 @@ fun PreviewSongControls() {
     )
 }
 
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview
 @Composable
 fun PreviewSongPlayerScreen() {
+    val viewModel: SongsListViewModel
+
     SongPlayerScreen(
-        song = SongModel(
-            id = 1,
-            imageUrl = "https://picsum.photos/200/300",
-            name = "Song Name",
-            artist = "Artist Name",
-            isTopTrack = false,
-            songUrl = "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
-        ),
-        onSongPlayerState = {},
+        viewModel = viewModel()
     )
 }

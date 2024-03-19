@@ -2,41 +2,61 @@ package com.yash10019coder.domain.mediaplayer
 
 import android.content.Context
 import android.media.MediaPlayer
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 class MediaPlayerController @Inject constructor(
-    private val mediaPlayer: MyMediaPlayer
+    private val mediaPlayer: MyMediaPlayer,
 ) {
-    fun initMediaPlayer(url: String) {
-        mediaPlayer.initMediaPlayer(url)
+    private val coroutineDispatcher: CoroutineDispatcher = Dispatchers.IO
+    suspend fun initMediaPlayer(url: String) {
+        withContext(coroutineDispatcher) {
+            mediaPlayer.initMediaPlayer(url)
+        }
     }
 
-    fun startPlayback() {
-        mediaPlayer.start()
+    suspend fun startPlayback() {
+        withContext(coroutineDispatcher) {
+            mediaPlayer.start()
+        }
     }
 
-    fun pausePlayback() {
-        mediaPlayer.pause()
+    suspend fun pausePlayback() {
+        withContext(coroutineDispatcher) {
+            mediaPlayer.pause()
+        }
     }
 
-    fun stopPlayback() {
-        mediaPlayer.stop()
+    suspend fun stopPlayback() {
+        withContext(coroutineDispatcher) {
+            mediaPlayer.stop()
+        }
     }
 
-    fun isPlaying(): Boolean {
-        return mediaPlayer.isPlaying()
+    suspend fun isPlaying(): Boolean {
+        return withContext(coroutineDispatcher) {
+            mediaPlayer.isPlaying()
+        }
     }
 
-    fun seekTo(position: Int) {
-        mediaPlayer.seekTo(position)
+    suspend fun seekTo(position: Int) {
+        withContext(coroutineDispatcher) {
+            mediaPlayer.seekTo(position)
+        }
     }
 
-    fun getCurrentPosition(): Int {
-        return mediaPlayer.getCurrentPosition()
+    suspend fun getCurrentPosition(): Int {
+        return withContext(coroutineDispatcher) {
+            mediaPlayer.getCurrentPosition()
+        }
     }
 
-    fun getDuration(): Int {
-        return mediaPlayer.getDuration()
+    suspend fun getDuration(): Int {
+        return withContext(coroutineDispatcher) {
+            mediaPlayer.getDuration()
+        }
     }
 
     fun setOnCompletionListener(listener: MediaPlayer.OnCompletionListener) {
@@ -47,9 +67,8 @@ class MediaPlayerController @Inject constructor(
         mediaPlayer.setOnErrorListener(listener)
     }
 
-    fun playNewSong(url: String) {
-        mediaPlayer.stop()
-        mediaPlayer.initMediaPlayer(url)
-        mediaPlayer.start()
+    suspend fun playNewSong(url: String) {
+        stopPlayback()
+        initMediaPlayer(url)
     }
 }
